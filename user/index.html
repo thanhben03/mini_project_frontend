@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+<style>
+    .scrolled {
+        opacity: 0.5;
+        transition: all 0.5s ease;
+    }
+</style>
+
+<!-- Open the modal using ID.showModal() method -->
+<!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
+<dialog id="my_modal_1" class="modal">
+  <div class="modal-box">
+    <div class="container mx-auto p-4 text-center text-white bg-gray-900">
+        <div class="flex justify-between items-center mb-4">
+            <div class="flex-1">
+                <div class="text-green-500 text-xl font-bold">CDM</div>
+                <div id="totalPlayer-1" class="text-blue-400 text-4xl font-bold">101</div>
+                <div id="scoreHight-1" class="text-green-500 text-sm"></div>
+            </div>
+            <div class="flex-1 text-center">
+                <div class="flex justify-center space-x-4 mb-2">
+                    <span id="namePlayer-1" class="text-blue-500"></span>
+                    <span id="namePlayer-2"class="text-yellow-400"></span>
+                </div>
+                <div style="width: 175px;" id="panel-compare" class="grid grid-cols-3 gap-x-4 text-sm">
+                    
+                </div>
+            </div>
+            <div class="flex-1">
+                <div class="text-green-500 text-xl font-bold">CDM</div>
+                <div id="totalPlayer-2" class="text-blue-400 text-4xl font-bold">87</div>
+                <div id="scoreHight-2" class="text-green-500 text-sm"></div>
+                
+            </div>
+        </div>
+
+    </div>
+    
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+<!-- bg-[url('../image/backgroundbody.png')] bg-cover bg-no-repeat -->
+<body class="w-full h-full bg-base-300 flex flex-col items-center  overflow-auto">
+    
+    <header id="header" class="w-full sticky top-0 z-[100] bg-[#01A0FE] flex justify-between items-center p-2">
+        <div class="bg-[#01A0FE] content flex justify-between items-center">
+            <div class="logo m-2">
+                <img src="../image/logo.png" alt="logo" class="w-16 h-16">
+            </div>
+            <div class="search-bar flex items-center mx-[50px] relative">
+                <label class="input input-bordered flex items-center gap-2">
+                    <input id="search" type="text" class="grow" placeholder="Search" />
+                    <button id="searchBtn"><i class="fa fa-search"></i></button>
+                </label>
+            </div>
+        </div>
+    </header>
+
+   
+
+    <main class="w-full h-screen flex justify-center items-center container overflow-hidden">
+        <div class=" w-full md:w-3/4 h-3/4 z-10 rounded flex justify-center items-center">
+            <div class="swiper mySwiper">
+                <div id="swiperContainer" class="swiper-wrapper">
+
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+    <section class="bg-white rounded w-full md:w-3/4  text-center p-2">
+        <div class=" flex flex-col gap-5">
+            <div class="flex items-center">
+                <div id="btnSort" class="dropdown">
+                    <div role="button" class="btn m-1"><i class="fa fa-filter"></i>
+                    </div>
+                  </div>
+                <select id="selectTeam" class="select-sm select-bordered w-full max-w-xs">
+                    <option  selected>Choose your team</option>
+                  </select>
+                  <select id="selectPosition" class="select-sm select-bordered w-full max-w-xs">
+                    <option  selected>Choose your position</option>3
+                    <option >GK</option>
+                    <option >LW</option>
+                    <option >LB</option>
+                    <option >CB</option>
+                    <option >LWB</option>
+                    <option >RWB</option>
+                    <option >RB</option>
+                    <option >LDM</option>
+                    <option >RDM</option>
+                    <option >LM</option>
+                    <option >CM</option>
+                    <option >CDM</option>
+                    <option >LCM</option>
+                    <option >RCM</option>
+                    <option >CAM</option>
+                    <option >LCAM</option>
+                    <option >RCAM</option>
+                    <option >LAM</option>
+                    <option >RAM</option>
+                    <option >SW</option>
+                    <option >ST</option>
+                    <option >LS</option>
+                    <option >RS</option>
+                    <option >CF</option>
+                    <option >LF</option>
+                    <option >LW</option>
+                    <option >RF</option>
+                    <option >LW</option>
+                    <option >RW</option>
+
+                </select>
+                <button onclick="compare(); my_modal_1.showModal()" id="compareBtn" style="display: none;" type="button" 
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 
+                focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 
+                me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none 
+                dark:focus:ring-blue-800">Compare</button>
+                <button id="clearBtn" style="display: none;" onclick="clearCompare()" type="button" 
+                class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 
+                focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 
+                dark:hover:bg-red-700 dark:focus:ring-red-900">Clear</button>
+                <div style="display: none;" id="wrap-choose-player" class="">
+                    <span class="text-blue-500" id="choose-player-1">Player 1</span>
+                    <span>VS</span>
+                    <span class="text-yellow-500" id="choose-player-2">Player 2</span>
+                </div>
+
+
+
+
+            </div>
+            <div class="flex  w-full h-[500px] overflow-auto">
+                <table id="table" class="table table-auto w-1/2 ">
+                    <!-- head -->
+                    <thead class="text-center">
+                        <tr>
+                            <th>Name</th>
+                            <th>Height | Weight</th>
+                            <th>salary</th>
+                            <th>sp</th>
+                            <th>ss</th>
+                            <th>bc</th>
+                            <th>ls</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                    </tbody>
+                    <!-- foot -->
+                </table>
+                <div class="bg-base-100 w-1/2 ">
+                    <table id="tableFilter" class="table table-auto w-full">
+                        <!-- head -->
+                        <thead class="text-center">
+                            <tr>
+                                <th>Name</th>
+                                <th>Height | Weight</th>
+                                <th>salary</th>
+                                <th>sp</th>
+                                <th>ss</th>
+                                <th>bc</th>
+                                <th>ls</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodyFilter">
+                        </tbody>
+                        <!-- foot -->
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+        
+    </section>
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="main.js"></script>
+
+</body>
+
+</html>
