@@ -221,6 +221,7 @@ function test(idPlayer, namePlayer) {
 
 function clearCompare() {
   compareList = [];
+  compareNameList = [];
   compareBtn.style.display = "none";
   clearBtn.style.display = "none";
   document.getElementById("wrap-choose-player").style.display = "none";
